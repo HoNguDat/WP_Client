@@ -18,7 +18,7 @@ const AddForm = (props: AddFormProps) => {
   const { user } = useContext(UserContext);
   const initialState = {
     content: "",
-    userId: user?.userId,
+    userId: 0,
     groupId: 0,
     imageFile: undefined,
   };
@@ -36,6 +36,8 @@ const AddForm = (props: AddFormProps) => {
       });
   }, []);
   const showModal = () => {
+    console.log("User add form", user);
+
     setOpen(true);
   };
 

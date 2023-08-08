@@ -13,7 +13,7 @@ export interface Post {
   content: string;
   fullName?: string;
   groupName?: string;
-  userId: number;
+  userId: number | any;
   groupId: number;
   loading?: boolean;
   postImage?: string;
@@ -54,7 +54,6 @@ const PostContent: React.FC = () => {
     return () => clearTimeout(timer);
   }, [keyWord]);
   async function handleSumbit(post: AddPost) {
-    console.log(user?.userId);
     debugger;
     const data = {
       content: post.content,
@@ -65,7 +64,7 @@ const PostContent: React.FC = () => {
     console.log("Data req: ", data);
 
     try {
-      const _post = await savePost(post);
+      const _post = await savePost(data);
       setPosts((prev) => [...prev, _post]);
       console.log(post);
 
@@ -115,24 +114,11 @@ const PostContent: React.FC = () => {
       });
     }
   }
-  const loadMore =
-    !initLoading && !loading ? (
-      <div
-        style={{
-          textAlign: "center",
-          marginTop: 12,
-          height: 32,
-          lineHeight: "32px",
-        }}
-      >
-        <Button>loading more</Button>
-      </div>
-    ) : null;
 
   return (
     <>
       <AddForm handleSubmit={handleSumbit} />
-      <div></div>
+
       <PostTable
         listPosts={posts}
         deletePost={handleDelete}

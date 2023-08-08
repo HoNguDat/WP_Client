@@ -32,9 +32,7 @@ const Login: React.FC = () => {
   const { setUser } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [cookies, setCookie] = useCookies(["jwt"]);
   const navigate = useNavigate();
-  const api = useApi();
   const authenticate = "User/authenticate";
 
   const handleSubmit = async () => {

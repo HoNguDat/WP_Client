@@ -1,3 +1,7 @@
+*{
+  font-family: inherit;
+  font-size: 16px;
+}
 .App {
   text-align: center;
 }
@@ -62,3 +66,54 @@
 .socialIcon{
   cursor: pointer;
 }
+
+.postContent{
+  padding: 10px;
+  border: 1px solid #e8e9eb;
+  margin-left:200px;
+  margin-right: 150px;
+  background-color: white;
+  border-radius: 10px;
+}
+.headerPost{
+  padding: 5px;
+ 
+}
+.avatarUser{
+
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+ 
+}
+.createAt{
+  margin-top: 4px;
+}
+.bodyContent{
+  font-size: 18px;
+}
+.imageContent{
+  padding-top: 20px;
+  width: 100%;
+  height: 500px;
+background-size: cover;
+}
+.interact{
+  font-size: 18px;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  text-align: center;
+  margin-top: 18px;
+}
+.btnInteract{
+  padding: 3px 0 3px 0;
+
+}
+.textInteract{
+  font-size: 18px;
+  font-weight: bold;
+}
+.commentPost{
+  margin-top: 10px;
+}
+

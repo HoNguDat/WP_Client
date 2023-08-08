@@ -13,7 +13,7 @@ import Login from "./components/Login";
 import Auth from "./components/Auth";
 import UserProvider from "./context/UserProvider";
 import SearchProvider from "./context/SearchProvider";
-import PrivateRoutes from "./utils/PrivateRoute";
+import PrivateRoute from "./utils/PrivateRoute";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
@@ -25,10 +25,8 @@ root.render(
           <React.StrictMode>
             <React.Fragment>
               <Routes>
-                <Route element={<PrivateRoutes />}>
-                  <Route path="/homepage" element={<Root />} />
-                </Route>
-
+               
+     <Route path="/homepage" element={<Root />} />
                 <Route path="/register" element={<Register />}></Route>
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/" element={<Login />} />

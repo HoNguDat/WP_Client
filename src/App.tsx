@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Root from "./components/Layout";
-import PrivateRoutes from "./utils/PrivateRoute";
+import PrivateRoute from "./utils/PrivateRoute";
 import UserProvider from "./context/UserProvider";
 import SearchProvider from "./context/SearchProvider";
 import Error from "./components/404";
@@ -20,10 +20,7 @@ function App() {
           <BrowserRouter>
             <React.Fragment>
               <Routes>
-                <Route element={<PrivateRoutes />}>
-                  <Route path="/homepage" element={<Root />} />
-                </Route>
-
+                <Route path="/homepage" element={<Root />} />
                 <div className="appBg">
                   <Route path="/register" element={<Register />}></Route>
                   <Route path="/login" element={<Login />}></Route>

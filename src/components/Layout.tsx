@@ -21,10 +21,9 @@ import { Col, Layout, Menu, Row, theme, Image, Button } from "antd";
 import SearchBar from "./Searchbar";
 import PostContent from "./PostContent";
 import { ToastContainer, toast } from "react-toastify";
-import { useApi } from "../services/axios";
-import { useCookies } from "react-cookie";
 import { UserContext } from "../context/UserContext";
 import { SearchContext } from "../context/SearchContext";
+import axios from "axios";
 
 const { Header, Content, Footer, Sider } = Layout;
 export interface Group {
@@ -32,46 +31,21 @@ export interface Group {
   name: string;
   menberQuantity: number;
 }
-const items: MenuProps["items"] = [
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  AppstoreOutlined,
-  TeamOutlined,
-  ShopOutlined,
-].map((icon, index) => ({
-  key: String(index + 1),
-  icon: React.createElement(icon),
-  label: `nav ${index + 1}`,
-}));
 
 const Root: React.FC = () => {
+  const [groups, setGroups] = useState<Group[]>([]);
+  useEffect(() => {
+    axios
+      .get("https://localhost:44332/api/Group/getallgroup", {})
+      .then((respose) => {
+        setGroups(respose.data);
+      });
+  }, []);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
   const { user } = useContext(UserContext);
   const { keyWord } = useContext(SearchContext);
-
-  const items: MenuProps["items"] = useMemo(
-    () =>
-      [
-        UserOutlined,
-        VideoCameraOutlined,
-        UploadOutlined,
-        BarChartOutlined,
-        CloudOutlined,
-        AppstoreOutlined,
-        TeamOutlined,
-        ShopOutlined,
-      ].map((icon, index) => ({
-        key: String(index + 1),
-        icon: React.createElement(icon),
-        label: `nav ${index + 1}`,
-      })),
-    []
-  );
 
   return (
     <Layout hasSider>
@@ -85,16 +59,31 @@ const Root: React.FC = () => {
           bottom: 0,
         }}
       >
+        <div
+          className=""
+          style={{
+            color: "white",
+            paddingTop: 100,
+            textAlign: "center",
+            fontSize: 20,
+            fontWeight: "bold",
+          }}
+        >
+          Groups
+        </div>
         <div className="demo-logo-vertical" />
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={["1"]}
-          items={items}
-        ></Menu>
+        <div style={{ padding: 10 }}>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+            {groups.map((items) => (
+              <Menu.Item key={items.groupId} icon={<UserOutlined />}>
+                {items.name}
+              </Menu.Item>
+            ))}
+          </Menu>
+        </div>
       </Sider>
       <Layout className="site-layout" style={{ marginLeft: 200 }}>
-        <Header style={{ padding: 0, background: "#001529" }}>
+        <Header style={{ padding: 0 }}>
           <Row>
             <Col span={2} style={{ padding: 3 }}>
               <Image src="https://assets.website-files.com/5f85cdf8c0babd9853d8f9f0/61d46e19a289044dff840cc9_futurify_logo.svg"></Image>
@@ -133,7 +122,9 @@ const Root: React.FC = () => {
             </Col>
           </Row>
         </Header>
-        <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
+        <Content
+          style={{ margin: "24px 16px 0", overflow: "initial", height: 1000 }}
+        >
           <div
             style={{
               padding: 24,
@@ -141,12 +132,11 @@ const Root: React.FC = () => {
             }}
           >
             <Row>
-              <Col span={16}>
+              <Col span={20} style={{ backgroundColor: "#f7f8fa" }}>
                 <PostContent></PostContent>
               </Col>
-              <Col span={8} style={{ textAlign: "center" }}>
+              <Col span={4} style={{ textAlign: "center" }}>
                 Hello {user?.firstName} {user?.lastName} !!!
-                {}
               </Col>
             </Row>
           </div>

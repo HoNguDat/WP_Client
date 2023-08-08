@@ -1,6 +1,12 @@
-import { Outlet, Navigate, OutletProps } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-export default function PrivateRoutes() {
-  let auth = { token: true };
-  return auth.token ? <Outlet /> : <Navigate to="/" />;
+import React from "react";
+import { Outlet, Navigate } from "react-router-dom";
+
+interface Auth {
+  token: boolean;
 }
+
+const PrivateRoute: React.FC = () => {
+  let auth: Auth = { token: false };
+  return auth.token ? <Outlet /> : <Navigate to="/login" />;
+};
+export default PrivateRoute;
