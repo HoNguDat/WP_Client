@@ -66,14 +66,27 @@
 .socialIcon{
   cursor: pointer;
 }
+.groupLogoLeft{
+text-align: center;
+margin-top: 25px;
+}
+.groupLogoLeft:hover{
+  background-color: #e7f3ff;
+  border-radius: 20px;
+}
+.logoLeft{
+  width: 50px;
+  height: 50px;
 
+}
 .postContent{
   padding: 10px;
   border: 1px solid #e8e9eb;
-  margin-left:200px;
-  margin-right: 150px;
+  margin-left:60px;
+  margin-right: 220px;
   background-color: white;
   border-radius: 10px;
+  margin-top: 30px;
 }
 .headerPost{
   padding: 5px;
@@ -91,29 +104,48 @@
 }
 .bodyContent{
   font-size: 18px;
+  margin-top: 20px;
 }
 .imageContent{
-  padding-top: 20px;
+  margin-top: 20px;
   width: 100%;
   height: 500px;
 background-size: cover;
+
 }
 .interact{
   font-size: 18px;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
+  border-top: 1px solid #ced0d4;
+  border-bottom: 1px solid #ced0d4;
   text-align: center;
-  margin-top: 18px;
+  margin-top: 20px;
+  padding: 10px 0 10px 0;
+  color: #77797c;
 }
 .btnInteract{
-  padding: 3px 0 3px 0;
+  /* padding: 7px 0 7px 0; */
 
+}
+.btnStt{
+color: #77797c;
 }
 .textInteract{
   font-size: 18px;
   font-weight: bold;
+  justify-content: center;
 }
 .commentPost{
-  margin-top: 10px;
+  margin-top: 20px;
+}
+.groupList{
+  text-decoration: none;
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 5px;
+
+}
+.groupList:hover{
+  background-color: #e5e5e5;
+
 }
 

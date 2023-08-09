@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Avatar, Button, List, Skeleton } from "antd";
+import { Avatar, Button, Col, List, Row, Skeleton } from "antd";
 import axios from "axios";
 import AddForm from "./AddForm";
 import { ToastContainer, toast } from "react-toastify";
@@ -17,6 +17,7 @@ export interface Post {
   groupId: number;
   loading?: boolean;
   postImage?: string;
+  createdDateTime?: string;
 }
 export interface AddPost {
   postId?: number;
@@ -65,7 +66,7 @@ const PostContent: React.FC = () => {
 
     try {
       const _post = await savePost(data);
-      setPosts((prev) => [...prev, _post]);
+      setPosts((prev) => [_post, ...prev]);
       console.log(post);
 
       //setPosts([...posts, _post]);
@@ -117,7 +118,19 @@ const PostContent: React.FC = () => {
 
   return (
     <>
-      <AddForm handleSubmit={handleSumbit} />
+      <Row>
+        <Col span={12} style={{ paddingTop: 10 }}>
+          <h1 style={{ marginLeft: 60 }}>New feeds</h1>
+          <p style={{ marginLeft: 60 }}>
+            Discover posts from across your organization
+          </p>
+        </Col>
+        <Col span={12} style={{ paddingTop: 40, textAlign: "center" }}>
+          <AddForm handleSubmit={handleSumbit} />
+        </Col>
+      </Row>
+
+      <div style={{ marginLeft: 1000 }}></div>
 
       <PostTable
         listPosts={posts}

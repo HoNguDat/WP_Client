@@ -9,6 +9,7 @@ import {
   AppstoreOutlined,
   BarChartOutlined,
   CloudOutlined,
+  GroupOutlined,
   MessageOutlined,
   ShopOutlined,
   TeamOutlined,
@@ -31,14 +32,26 @@ export interface Group {
   name: string;
   menberQuantity: number;
 }
+export interface User {
+  userId: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+}
 
 const Root: React.FC = () => {
   const [groups, setGroups] = useState<Group[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
   useEffect(() => {
     axios
       .get("https://localhost:44332/api/Group/getallgroup", {})
       .then((respose) => {
         setGroups(respose.data);
+      });
+    axios
+      .get("https://localhost:44332/api/User/getalluser", {})
+      .then((respose) => {
+        setUsers(respose.data);
       });
   }, []);
   const {
@@ -48,105 +61,170 @@ const Root: React.FC = () => {
   const { keyWord } = useContext(SearchContext);
 
   return (
-    <Layout hasSider>
-      <Sider
-        style={{
-          overflow: "auto",
-          height: "100vh",
-          position: "fixed",
-          left: 0,
-          top: 0,
-          bottom: 0,
-        }}
-      >
-        <div
-          className=""
-          style={{
-            color: "white",
-            paddingTop: 100,
-            textAlign: "center",
-            fontSize: 20,
-            fontWeight: "bold",
-          }}
-        >
-          Groups
+    <Row>
+      <Col span={2} style={{ border: "1px solid #ced0d4" }}>
+        <div className="groupLogoLeft">
+          <a
+            href="
+          "
+          >
+            <img
+              className="logoLeft"
+              src="https://cdn.icon-icons.com/icons2/2248/PNG/512/facebook_workplace_icon_135651.png"
+            ></img>
+          </a>
         </div>
-        <div className="demo-logo-vertical" />
-        <div style={{ padding: 10 }}>
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-            {groups.map((items) => (
-              <Menu.Item key={items.groupId} icon={<UserOutlined />}>
-                {items.name}
-              </Menu.Item>
-            ))}
-          </Menu>
+        <div className="groupLogoLeft">
+          <a href="">
+            <img
+              className="logoLeft"
+              src="https://cdn-icons-png.flaticon.com/512/3119/3119338.png"
+            ></img>
+          </a>
         </div>
-      </Sider>
-      <Layout className="site-layout" style={{ marginLeft: 200 }}>
-        <Header style={{ padding: 0 }}>
-          <Row>
-            <Col span={2} style={{ padding: 3 }}>
-              <Image src="https://assets.website-files.com/5f85cdf8c0babd9853d8f9f0/61d46e19a289044dff840cc9_futurify_logo.svg"></Image>
-            </Col>
-            <Col span={18} style={{ textAlign: "center" }}>
-              <SearchBar />
-            </Col>
-            <Col span={4}>
+        <div className="groupLogoLeft">
+          <a href="">
+            <img
+              className="logoLeft"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx958y7mpNMjlQuhAkdMvuz7vgS_5ym7sPcA&usqp=CAU"
+            ></img>
+          </a>
+        </div>
+      </Col>
+      <Col span={22}>
+        <Layout hasSider>
+          <Layout className="site-layout">
+            <Header>
               <Row>
-                <Col span={8}>
-                  <a href="">
-                    <Image
-                      src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Messenger_colored_svg-512.png"
-                      style={{ width: 30, height: 30 }}
-                    ></Image>
-                  </a>
+                <Col span={2} style={{ padding: 3 }}>
+                  <Image src="https://assets.website-files.com/5f85cdf8c0babd9853d8f9f0/61d46e19a289044dff840cc9_futurify_logo.svg"></Image>
                 </Col>
-                <Col span={8}>
-                  <a href="">
-                    <Image
-                      src="https://www.seekpng.com/png/full/38-385679_facebook-bell-notification-icon-facebook-notification-icon.png"
-                      style={{ width: 30, height: 30 }}
-                    ></Image>
-                  </a>
+                <Col span={18} style={{ textAlign: "center" }}>
+                  <SearchBar />
                 </Col>
-                <Col span={8}>
-                  <a href="">
-                    <Image
-                      src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Messenger_colored_svg-512.png"
-                      style={{ width: 30, height: 30 }}
-                    ></Image>
-                  </a>
+                <Col span={4}>
+                  {/* <MessageOutlined style={{background:'#fff',width:100,height:100}} /> */}
                 </Col>
               </Row>
-              {/* <MessageOutlined style={{background:'#fff',width:100,height:100}} /> */}
-            </Col>
-          </Row>
-        </Header>
-        <Content
-          style={{ margin: "24px 16px 0", overflow: "initial", height: 1000 }}
-        >
-          <div
-            style={{
-              padding: 24,
-              background: colorBgContainer,
-            }}
-          >
-            <Row>
-              <Col span={20} style={{ backgroundColor: "#f7f8fa" }}>
-                <PostContent></PostContent>
-              </Col>
-              <Col span={4} style={{ textAlign: "center" }}>
-                Hello {user?.firstName} {user?.lastName} !!!
-              </Col>
-            </Row>
-          </div>
-        </Content>
-        <Footer style={{ textAlign: "center" }}>
-          Ant Design ©2023 Created by Futurify
-        </Footer>
-      </Layout>
-      <ToastContainer position="bottom-right" />
-    </Layout>
+            </Header>
+            <Content
+              style={{
+                overflow: "initial",
+                height: 1000,
+              }}
+            >
+              <div>
+                <Row>
+                  <Col span={4} style={{ borderRight: "1px solid #ced0d4" }}>
+                    <div style={{ padding: 10 }}>
+                      <div
+                        style={{
+                          color: "black",
+                          fontSize: 25,
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Home
+                      </div>
+                      {groups.map((item) => (
+                        <div className="groupList">
+                          <a
+                            style={{
+                              color: "#050505",
+                              fontSize: 17,
+                              fontWeight: "500",
+                            }}
+                          >
+                            <Row>
+                              <Col span={2}>
+                                <img
+                                  style={{ width: 30, height: 30 }}
+                                  src="https://cdn3.vectorstock.com/i/1000x1000/68/82/teamwork-group-planning-and-creating-icon-vector-21386882.jpg"
+                                ></img>
+                              </Col>
+                              <Col span={22}>
+                                <p
+                                  style={{
+                                    paddingLeft: 20,
+                                    paddingTop: 4,
+                                  }}
+                                >
+                                  {item.name}
+                                </p>
+                              </Col>
+                            </Row>
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+                    <div style={{ marginTop: 18, padding: 10 }}>
+                      <div
+                        style={{
+                          color: "black",
+
+                          fontSize: 25,
+                          fontWeight: "bold",
+                        }}
+                      >
+                        People
+                      </div>
+                      {users.map((item) => (
+                        <div className="groupList">
+                          <a
+                            style={{
+                              color: "#050505",
+                              fontSize: 17,
+                              fontWeight: "500",
+                            }}
+                          >
+                            <Row>
+                              <Col span={2}>
+                                {" "}
+                                <img
+                                  style={{ width: 30, height: 30 }}
+                                  src="https://i.pinimg.com/736x/90/57/0a/90570addee2645866a597530721f37fd.jpg"
+                                ></img>
+                              </Col>
+                              <Col span={22}>
+                                {" "}
+                                <p
+                                  style={{
+                                    paddingLeft: 20,
+                                    paddingTop: 4,
+                                  }}
+                                >
+                                  {item.lastName} {item.firstName}
+                                </p>
+                              </Col>
+                            </Row>
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+                  </Col>
+                  <Col
+                    span={16}
+                    style={{
+                      backgroundColor: "#f7f8fa",
+                      borderRight: "1px solid #ced0d4",
+                    }}
+                  >
+                    <PostContent></PostContent>
+                  </Col>
+                  <Col span={4} style={{ textAlign: "center" }}>
+                    Hello {user?.firstName} {user?.lastName} !!!
+                  </Col>
+                </Row>
+              </div>
+            </Content>
+            <Footer style={{ textAlign: "center" }}>
+              Ant Design ©2023 Created by Futurify
+            </Footer>
+          </Layout>
+          <ToastContainer position="bottom-right" />
+        </Layout>
+      </Col>
+    </Row>
   );
 };
 
